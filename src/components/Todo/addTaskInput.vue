@@ -17,11 +17,13 @@ export default {
   data() {
     return {
       newTaskTitle: "",
+      action: "",
     }
   },
   methods: {
     addTask: function () {
-      this.$store.commit("addTask", this.newTaskTitle);
+      this.action='Added new task'
+      this.$store.dispatch("addTask", this.newTaskTitle, this.action);
       this.newTaskTitle = "";
     },
   },

@@ -33,10 +33,10 @@ export default {
   props: ['task'],
   methods: {
     doneTask: function (taskId) {
-      this.$store.commit("doneTask", taskId);
+      this.$store.dispatch("doneTask", taskId);
     },
     deleteTask: function (taskId) {
-      this.$store.commit("deleteTask", taskId);
+      this.$store.dispatch("deleteTask", taskId);
     },
   },
 };

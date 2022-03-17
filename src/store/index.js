@@ -5,6 +5,11 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
+    snackbar: {
+      show: false,
+      text: "My timeout is set to 2000.",
+      timeout: 2000,
+    },
     tasks: [
       {
         id: 1,
@@ -41,7 +46,31 @@ export default new Vuex.Store({
     deleteTask: function (state, taskId) {
       state.tasks = state.tasks.filter((task) => task.id !== taskId);
     },
+    showSnackbar: function (state, text) {
+      let timeout = 0;
+      if(state.snackbar.show) {
+        state.snackbar.show = false;
+        timeout = 500;
+      }
+      setTimeout(() => {
+        state.snackbar.show=true;
+        state.snackbar.text=text; 
+      }, timeout);
+    }
   },
-  actions: {},
+  actions: {
+    addTask({ commit }, newTaskTitle){
+      commit('addTask', newTaskTitle);
+      commit('showSnackbar', 'Added Task!');
+    },
+    deleteTask({ commit }, taskId){
+      commit('deleteTask', taskId);
+      commit('showSnackbar', 'Deleted Task!');
+    },
+    doneTask({ commit }, taskId){
+      commit('doneTask', taskId);
+      commit('showSnackbar', 'Finished Task!');
+    }
+  },
   modules: {},
 });
