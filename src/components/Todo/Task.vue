@@ -25,18 +25,33 @@
         </v-list-item-action>
       </template>
     </v-list-item>
+    <DeleteDialog v-if="dialogs.delete" :taskId="taskToDelete" @close="dialogs.delete = false"/>
   </div>
 </template>
 
 <script>
+import DeleteDialog from "./Dialogs/DeleteDialog.vue";
+
 export default {
-  props: ['task'],
+  props: ["task"],
+  data() {
+    return {
+      dialogs: {
+        delete: false,
+        taskToDelete: "",
+      },
+    };
+  },
+  components: {
+    DeleteDialog,
+  },
   methods: {
     doneTask: function (taskId) {
       this.$store.dispatch("doneTask", taskId);
     },
     deleteTask: function (taskId) {
-      this.$store.dispatch("deleteTask", taskId);
+      this.dialogs.delete = true;
+      this.taskToDelete = taskId;
     },
   },
 };
