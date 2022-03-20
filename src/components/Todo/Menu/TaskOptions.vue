@@ -2,7 +2,9 @@
   <div class="text-center">
     <v-menu open-on-hover top offset-y>
       <template v-slot:activator="{ on, attrs }">
-        <v-btn color="primary" dark v-bind="attrs" v-on="on"> Dropdown </v-btn>
+        <v-btn icon v-bind="attrs" v-on="on">
+          <v-icon>mdi-dots-vertical</v-icon>
+        </v-btn>
       </template>
 
       <v-list>
