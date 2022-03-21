@@ -20,12 +20,11 @@ export default {
     };
   },
   props: {
-    taskId: "",
+    task: "",
   },
   methods: {
     deleteTask: function () {
-      console.log('trying to delete: ', this.taskId);
-      this.$store.dispatch("deleteTask", this.taskId);
+      this.$store.dispatch("deleteTask", this.task.id);
       this.dialog = false;
     },
   },

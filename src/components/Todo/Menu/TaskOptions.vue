@@ -23,24 +23,31 @@
 
     <DeleteDialog
       v-if="dialogs.delete"
-      :taskId="task.id"
+      :task="task"
       @close="dialogs.delete = false"
+    />
+
+    <EditDialog
+      v-if="dialogs.edit"
+      :task="task"
+      @close="dialogs.edit = false"
     />
   </div>
 </template>
 
 <script>
 import DeleteDialog from "../Dialogs/DeleteDialog.vue";
+import EditDialog from "../Dialogs/EditDialog.vue";
 
 export default {
-  props: ['task'],
+  props: ["task"],
   data: () => ({
     items: [
       {
         title: "Edit",
         icon: "mdi-square-edit-outline",
         click() {
-          console.log("edit");
+          this.dialogs.edit = true;
         },
       },
       {
@@ -60,6 +67,7 @@ export default {
     ],
     dialogs: {
       delete: false,
+      edit: false,
       taskToDelete: "",
     },
   }),
@@ -70,6 +78,7 @@ export default {
   },
   components: {
     DeleteDialog,
+    EditDialog,
   },
 };
 </script>
