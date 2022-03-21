@@ -24,6 +24,7 @@ export default {
   },
   methods: {
     deleteTask: function () {
+      console.log('trying to delete: ', this.taskId);
       this.$store.dispatch("deleteTask", this.taskId);
       this.dialog = false;
     },

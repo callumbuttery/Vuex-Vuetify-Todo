@@ -44,6 +44,7 @@ export default new Vuex.Store({
       task.active = !task.active;
     },
     deleteTask: function (state, taskId) {
+      console.log('in mutations');
       state.tasks = state.tasks.filter((task) => task.id !== taskId);
     },
     showSnackbar: function (state, text) {
@@ -64,6 +65,7 @@ export default new Vuex.Store({
       commit('showSnackbar', 'Added Task!');
     },
     deleteTask({ commit }, taskId){
+      console.log('in actions');
       commit('deleteTask', taskId);
       commit('showSnackbar', 'Deleted Task!');
     },

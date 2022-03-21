@@ -8,7 +8,11 @@
       </template>
 
       <v-list>
-        <v-list-item v-for="(item, index) in items" :key="index" @click="handleClick(index)">
+        <v-list-item
+          v-for="(item, index) in items"
+          :key="index"
+          @click="handleClick(index)"
+        >
           <v-list-item-icon>
             <v-icon v-text="item.icon"></v-icon>
           </v-list-item-icon>
@@ -16,11 +20,20 @@
         </v-list-item>
       </v-list>
     </v-menu>
+
+    <DeleteDialog
+      v-if="dialogs.delete"
+      :taskId="task.id"
+      @close="dialogs.delete = false"
+    />
   </div>
 </template>
 
 <script>
+import DeleteDialog from "../Dialogs/DeleteDialog.vue";
+
 export default {
+  props: ['task'],
   data: () => ({
     items: [
       {
@@ -34,7 +47,7 @@ export default {
         title: "Delete",
         icon: "mdi-delete",
         click() {
-          console.log("delete");
+          this.dialogs.delete = true;
         },
       },
       {
@@ -45,12 +58,19 @@ export default {
         },
       },
     ],
+    dialogs: {
+      delete: false,
+      taskToDelete: "",
+    },
   }),
   methods: {
     handleClick(index) {
-      this.items[index].click();
-    }
-  }
+      this.items[index].click.call(this);
+    },
+  },
+  components: {
+    DeleteDialog,
+  },
 };
 </script>
 
