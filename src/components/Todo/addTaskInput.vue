@@ -18,13 +18,15 @@ export default {
     return {
       newTaskTitle: "",
       action: "",
-    }
+    };
   },
   methods: {
     addTask: function () {
-      this.action='Added new task'
-      this.$store.dispatch("addTask", this.newTaskTitle, this.action);
-      this.newTaskTitle = "";
+      if (this.newTaskTitle) {
+        this.action = "Added new task";
+        this.$store.dispatch("addTask", this.newTaskTitle, this.action);
+        this.newTaskTitle = "";
+      }
     },
   },
 };

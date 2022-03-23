@@ -39,7 +39,7 @@ export default {
   },
   methods: {
     saveTask: function () {
-      if (!this.checkDisabled) {
+      if (!this.checkDisabled ) {
         const payload = {
           id: this.task.id,
           value: this.taskTitle,
