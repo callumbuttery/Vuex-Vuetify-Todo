@@ -10,6 +10,7 @@
         <v-btn
           color="blue darken-1"
           text
+          :disabled="checkDisabled"
           @click="saveTask"
           @keyup.enter="saveTask"
         >
@@ -30,6 +31,11 @@ export default {
   },
   props: {
     task: "",
+  },
+  computed: {
+    checkDisabled: function () {
+      if (!this.taskTitle || this.taskTitle === this.task.title) return true;
+    },
   },
   methods: {
     saveTask: function () {
