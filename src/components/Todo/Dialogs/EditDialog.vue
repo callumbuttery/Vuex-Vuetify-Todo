@@ -12,7 +12,7 @@
           text
           :disabled="checkDisabled"
           @click="saveTask"
-          @keyup.enter="saveTask"
+          @keyup.enter="checkDisabled"
         >
           Save
         </v-btn>
@@ -34,18 +34,20 @@ export default {
   },
   computed: {
     checkDisabled: function () {
-      if (!this.taskTitle || this.taskTitle === this.task.title) return true;
+      return !this.taskTitle || this.taskTitle === this.task.title;
     },
   },
   methods: {
     saveTask: function () {
-      const payload = {
-        id: this.task.id,
-        value: this.taskTitle,
-      };
+      if (!this.checkDisabled) {
+        const payload = {
+          id: this.task.id,
+          value: this.taskTitle,
+        };
 
-      this.$store.dispatch("editTask", payload);
-      this.$emit("close");
+        this.$store.dispatch("editTask", payload);
+        this.$emit("close");
+      }
     },
   },
   mounted() {
