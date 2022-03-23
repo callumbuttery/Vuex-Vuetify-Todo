@@ -39,14 +39,19 @@ export default new Vuex.Store({
       state.tasks.push(newTask);
     },
     doneTask: function (state, taskId) {
-      const task = state.tasks.filter((task) => task.id === taskId)[0];
-
+      const task = findTask(taskId)
       task.active = !task.active;
     },
     deleteTask: function (state, taskId) {
-      console.log('in mutations');
       state.tasks = state.tasks.filter((task) => task.id !== taskId);
     },
+    editTask: function (state, payload) {
+      const task = state.tasks.filter((task) => task.id === payload.id)[0];
+      task.title = payload.value;
+    },
+    
+
+
     showSnackbar: function (state, text) {
       let timeout = 0;
       if(state.snackbar.show) {
@@ -57,15 +62,18 @@ export default new Vuex.Store({
         state.snackbar.show=true;
         state.snackbar.text=text; 
       }, timeout);
-    }
+    },
   },
   actions: {
+    editTask({ commit }, payload){
+      commit('editTask', payload);
+      commit('showSnackbar', 'Edited Task!');
+    },
     addTask({ commit }, newTaskTitle){
       commit('addTask', newTaskTitle);
       commit('showSnackbar', 'Added Task!');
     },
     deleteTask({ commit }, taskId){
-      console.log('in actions');
       commit('deleteTask', taskId);
       commit('showSnackbar', 'Deleted Task!');
     },
