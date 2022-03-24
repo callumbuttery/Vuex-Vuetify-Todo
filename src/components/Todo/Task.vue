@@ -39,11 +39,6 @@ import TaskMenu from "./Menu/TaskOptions.vue";
 
 export default {
   props: ["task"],
-  // methods: {
-  //   niceDate(value) {
-  //     return format(new Date(value), 'dd/MM/yyyy');
-  //   }
-  // },
   components: {
     TaskMenu,
   },
@@ -52,7 +47,7 @@ export default {
       this.$store.dispatch("doneTask", taskId);
     },
     niceDate(value) {
-      return format(new Date(value), "dd/MM/yyyy");
+      return format(new Date(value), "MMM d yy");
     },
   },
 };
