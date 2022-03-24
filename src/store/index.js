@@ -15,16 +15,19 @@ export default new Vuex.Store({
         id: 1,
         title: "Wake up",
         active: false,
+        dueDate: '2022-03-24',
       },
       {
         id: 2,
         title: "Shower",
         active: false,
+        dueDate: '2022-03-25',
       },
       {
         id: 3,
         title: "Get dressed",
         active: false,
+        dueDate: '2022-03-26',
       },
     ],
   },
@@ -34,6 +37,7 @@ export default new Vuex.Store({
         id: Date.now(),
         title: newTaskTitle,
         active: false,
+        dueDate: null,
       };
 
       state.tasks.push(newTask);

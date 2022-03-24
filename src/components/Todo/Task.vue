@@ -16,8 +16,12 @@
             >{{ task.title }}</v-list-item-title
           >
         </v-list-item-content>
+        <v-icon small class="mr-2" v-if="task.dueDate">mdi-clipboard-text-clock-outline </v-icon>
         <v-list-item-action>
-          <TaskMenu :task="task"/>
+          <v-list-item-action-text>{{ task.dueDate }}</v-list-item-action-text>
+        </v-list-item-action>
+        <v-list-item-action>
+          <TaskMenu :task="task" />
         </v-list-item-action>
       </template>
     </v-list-item>
@@ -25,7 +29,7 @@
 </template>
 
 <script>
-import TaskMenu from './Menu/TaskOptions.vue'
+import TaskMenu from "./Menu/TaskOptions.vue";
 
 export default {
   props: ["task"],
