@@ -15,7 +15,7 @@ export default new Vuex.Store({
         id: 1,
         title: "Wake up",
         active: false,
-        dueDate: '2022-03-24',
+        dueDate: '2022-03-01',
       },
       {
         id: 2,
