@@ -8,8 +8,8 @@
   >
     <v-date-picker v-model="date" scrollable>
       <v-spacer></v-spacer>
-      <v-btn text color="primary" @click="this.dialog = false"> Cancel </v-btn>
-      <v-btn text color="primary" @click="$refs.dialog.save(date)"> OK </v-btn>
+      <v-btn text color="primary" @click="$emit('close')"> Cancel </v-btn>
+      <v-btn text color="primary" @click="saveDate"> OK </v-btn>
     </v-date-picker>
   </v-dialog>
 </template>
@@ -26,10 +26,20 @@ export default {
     task: "",
   },
   mounted() {
-    if(this.task.dueDate) {
-        this.date = this.task.dueDate;
+    if (this.task.dueDate) {
+      this.date = this.task.dueDate;
     }
-  }
+  },
+  methods: {
+    saveDate: function () {
+      const payload = {
+        date: this.date,
+        id: this.task.id,
+      };
+      this.$store.dispatch("saveDate", payload);
+      this.$emit('close');
+    },
+  },
 };
 </script>
 

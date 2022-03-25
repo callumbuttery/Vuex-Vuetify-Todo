@@ -53,6 +53,10 @@ export default new Vuex.Store({
       const task = state.tasks.filter((task) => task.id === payload.id)[0];
       task.title = payload.value;
     },
+    saveDate: function (state, payload) {
+      const task = state.tasks.filter((task) => task.id === payload.id)[0];
+      task.dueDate = payload.date;
+    },
     
 
 
@@ -84,6 +88,10 @@ export default new Vuex.Store({
     doneTask({ commit }, taskId){
       commit('doneTask', taskId);
       commit('showSnackbar', 'Finished Task!');
+    },
+    saveDate({ commit }, payload){
+      commit('saveDate', payload);
+      commit('showSnackbar', 'Task date updated!');
     }
   },
   modules: {},
