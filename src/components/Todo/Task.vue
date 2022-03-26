@@ -20,7 +20,7 @@
           >mdi-clipboard-text-clock-outline
         </v-icon>
         <v-list-item-action>
-          <v-list-item-action-text>{{
+          <v-list-item-action-text v-if="task.dueDate">{{
             niceDate(task.dueDate)
           }}</v-list-item-action-text>
         </v-list-item-action>
