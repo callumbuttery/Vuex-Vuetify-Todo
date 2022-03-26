@@ -1,6 +1,8 @@
 <template>
   <row>
     <v-text-field
+      :value="$store.state.search"
+      @input="$store.commit('setSearch', $event)"
       @focus="closeSearch = false"
       @blur="closeSearch = true"
       placeholder="Search"
