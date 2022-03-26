@@ -37,6 +37,8 @@
     >
       <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
       <v-toolbar-title>Vuetify / Vuex Todo</v-toolbar-title>
+      <v-spacer></v-spacer>
+      <Search />
       <template v-slot:img="{ props }">
         <v-img
           v-bind="props"
@@ -53,10 +55,12 @@
 </template>
 
 <script>
-import Snackbar from '../src/components/Shared/Snackbar.vue'
+import Snackbar from "../src/components/Shared/Snackbar.vue";
+import Search from "../src/components/tools/Search.vue";
 export default {
   components: {
-    Snackbar
+    Snackbar,
+    Search,
   },
   data: () => ({
     drawer: null,
