@@ -35,16 +35,23 @@
       scroll-threshold="500"
       app
     >
-      <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
-      <v-toolbar-title>Vuetify / Vuex Todo</v-toolbar-title>
-      <v-spacer></v-spacer>
-      <Search />
       <template v-slot:img="{ props }">
         <v-img
           v-bind="props"
           gradient="to top right, rgba(55,236,186,.7), rgba(25,32,72,.7)"
         ></v-img>
       </template>
+
+      <v-container class="pa-1">
+        <v-row>
+          <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
+          <v-spacer></v-spacer>
+          <Search />
+        </v-row>
+        <v-row>
+          <v-toolbar-title class="ml-5">Vuetify / Vuex Todo</v-toolbar-title>
+        </v-row>
+      </v-container>
     </v-app-bar>
 
     <v-main>
